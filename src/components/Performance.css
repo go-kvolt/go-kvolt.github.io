@@ -1,0 +1,122 @@
+.performance {
+    padding: 8rem 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="light"] .performance {
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.perf-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-desc {
+    color: var(--color-text-muted);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.chart-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chart-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-align: right;
+}
+
+.chart-bar-bg {
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+:root[data-theme="light"] .chart-bar-bg {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.chart-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    min-width: fit-content;
+    /* Ensure text fits */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    overflow: visible;
+    /* Allow text to spill if needed, though min-width handles it */
+}
+
+.chart-value {
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.benchmark-note {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+    .performance {
+        padding: 4rem 0;
+    }
+
+    .perf-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-desc {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .chart-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+
+    .chart-label {
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    .chart-bar-bg {
+        height: 35px;
+    }
+
+    .chart-value {
+        font-size: 0.8rem;
+    }
+
+    .benchmark-note {
+        padding: 0 1rem;
+    }
+}
