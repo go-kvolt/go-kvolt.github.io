@@ -1,28 +1,28 @@
 import { Book, Code, Terminal, Layers, Globe, Shield, Activity, Settings, Zap, Paperclip, MessageSquare, Database, Server, Package, Cpu, Inbox, Clock, Layout, GitMerge, Lock, Brain } from 'lucide-react';
 
-import { intro } from './docs/intro';
-import { install } from './docs/install';
-import { quickstart } from './docs/quickstart';
-import { cli } from './docs/cli';
-import { routing } from './docs/routing';
-import { context } from './docs/context';
-import { configuration } from './docs/configuration';
-import { middleware } from './docs/middleware';
-import { authentication } from './docs/auth';
-import { validation } from './docs/validation';
-import { logging } from './docs/logging';
-import { websockets } from './docs/websockets';
-import { testing } from './docs/testing';
-import { swagger } from './docs/swagger';
-import { caching } from './docs/caching';
-import { queue } from './docs/queue';
-import { scheduler } from './docs/scheduler';
-import { templates } from './docs/templates';
-import { dependency_injection } from './docs/di';
-import { deployment } from './docs/deployment';
-import { best_practices } from './docs/best_practices';
-import { internals } from './docs/internals';
-import { security } from './docs/security';
+import { intro } from './docs/intro.jsx';
+import { install } from './docs/install.jsx';
+import { quickstart } from './docs/quickstart.jsx';
+import { cli } from './docs/cli.jsx';
+import { routing } from './docs/routing.jsx';
+import { context } from './docs/context.jsx';
+import { configuration } from './docs/configuration.jsx';
+import { middleware } from './docs/middleware.jsx';
+import { authentication } from './docs/auth.jsx';
+import { validation } from './docs/validation.jsx';
+import { logging } from './docs/logging.jsx';
+import { websockets } from './docs/websockets.jsx';
+import { testing } from './docs/testing.jsx';
+import { swagger } from './docs/swagger.jsx';
+import { caching } from './docs/caching.jsx';
+import { queue } from './docs/queue.jsx';
+import { scheduler } from './docs/scheduler.jsx';
+import { templates } from './docs/templates.jsx';
+import { dependency_injection } from './docs/di.jsx';
+import { deployment } from './docs/deployment.jsx';
+import { best_practices } from './docs/best_practices.jsx';
+import { internals } from './docs/internals.jsx';
+import { security } from './docs/security.jsx';
 
 export const sections = [
     {

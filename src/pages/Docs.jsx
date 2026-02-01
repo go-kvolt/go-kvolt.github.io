@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { sections, docsContent } from '../data/docsContent';
+import { sections, docsContent } from '../data/docsContent.jsx';
 import './Docs.css';
 
 const Docs = () => {
