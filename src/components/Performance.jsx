@@ -3,7 +3,6 @@ import './Performance.css';
 
 const benchmarks = [
     { name: 'KVolt', requests: 250000, color: '#00f0ff' }, // Cyan
-    { name: 'Fiber', requests: 145000, color: '#00ff9d' }, // Neon Green
     { name: 'Gin', requests: 55000, color: '#ffeb3b' },    // Yellow
     { name: 'Express', requests: 15000, color: '#ff0055' } // Pink
 ];
