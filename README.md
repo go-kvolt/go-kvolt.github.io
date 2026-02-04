@@ -82,3 +82,7 @@ src/
 ## 📄 License
 
 MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+Created & maintained by Kaviraj Mani
