@@ -34,7 +34,7 @@ if err != nil {
     logger.Error("Database fail", err)
     
     // Return a safe message to user
-    return c.Status(500).JSON(500, kvolt.Map{
+    return c.JSON(500, map[string]string{
         "error": "Internal Server Error",
         "code":  "DB_ERR",
     })
@@ -50,7 +50,7 @@ if err != nil {
 
         <h2>Concurrency Safety</h2>
         <div className="alert alert-warning">
-            <strong>Critical:</strong> The <code>*kvolt.Context</code> is <strong>NOT thread-safe</strong>.
+            <strong>Critical:</strong> The <code>*context.Context</code> is <strong>NOT thread-safe</strong>.
         </div>
         <p>If you launch a goroutine from a handler, do not pass the context directly.</p>
         <div className="code-block">

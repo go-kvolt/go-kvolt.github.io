@@ -1,4 +1,4 @@
-import { Book, Code, Terminal, Layers, Globe, Shield, Activity, Settings, Zap, Paperclip, MessageSquare, Database, Server, Package, Cpu, Inbox, Clock, Layout, GitMerge, Lock, Brain } from 'lucide-react';
+import { Book, Code, Terminal, Layers, Globe, Shield, Activity, Settings, Zap, Paperclip, Database, Server, Package, Cpu, Inbox, Clock, Layout, GitMerge, Lock, Brain, Radio, FileText } from 'lucide-react';
 
 import { intro } from './docs/intro';
 import { install } from './docs/install';
@@ -23,6 +23,9 @@ import { deployment } from './docs/deployment';
 import { best_practices } from './docs/best_practices';
 import { internals } from './docs/internals';
 import { security } from './docs/security';
+import { changelog } from './docs/changelog';
+import { grpc } from './docs/grpc';
+import { session } from './docs/session';
 
 export const sections = [
     {
@@ -31,6 +34,7 @@ export const sections = [
             { id: 'install', title: 'Installation', icon: <Terminal size={18} /> },
             { id: 'quickstart', title: 'Quick Start', icon: <Code size={18} /> },
             { id: 'cli', title: 'CLI Usage', icon: <Terminal size={18} /> },
+            { id: 'changelog', title: 'Changelog', icon: <FileText size={18} /> },
         ]
     },
     {
@@ -45,6 +49,7 @@ export const sections = [
         category: 'Features', items: [
             { id: 'middleware', title: 'Middleware', icon: <Layers size={18} /> },
             { id: 'authentication', title: 'Authentication', icon: <Shield size={18} /> },
+            { id: 'session', title: 'Sessions', icon: <Lock size={18} /> },
             { id: 'validation', title: 'Validation', icon: <Activity size={18} /> },
             { id: 'logging', title: 'Logging', icon: <Paperclip size={18} /> },
             { id: 'templates', title: 'Templates', icon: <Layout size={18} /> },
@@ -57,6 +62,7 @@ export const sections = [
             { id: 'queue', title: 'Queue', icon: <Inbox size={18} /> },
             { id: 'scheduler', title: 'Scheduler', icon: <Clock size={18} /> },
             { id: 'websockets', title: 'WebSockets', icon: <Zap size={18} /> },
+            { id: 'grpc', title: 'gRPC', icon: <Radio size={18} /> },
             { id: 'testing', title: 'Testing', icon: <Server size={18} /> },
             { id: 'swagger', title: 'API Docs (Swagger)', icon: <Database size={18} /> },
         ]
@@ -75,14 +81,17 @@ export const docsContent = {
     install,
     quickstart,
     cli,
+    changelog,
     routing,
     context,
     configuration,
     middleware,
     authentication,
+    session,
     validation,
     logging,
     websockets,
+    grpc,
     testing,
     swagger,
     caching,

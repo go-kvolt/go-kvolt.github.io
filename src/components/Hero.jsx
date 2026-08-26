@@ -25,7 +25,9 @@ const Hero = () => {
                     Build with <span className="gradient-text">Passion</span>. Scale with <span className="gradient-text">Power</span>.
                     <br />
                     <span className="hero-description-small">
-                        Crafting high-performance backends shouldn't be painful. Rediscover the joy of coding with a framework designed for the extraordinary.
+                    Crafting high-performance backends shouldn't be painful.
+                    <br />
+                    <span className="version-pill">v2.0 production</span>
                     </span>
                 </motion.p>
 

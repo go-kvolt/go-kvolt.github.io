@@ -20,7 +20,7 @@ const features = [
     },
     {
         title: "Middleware Ecosystem",
-        description: "Extensible middleware support for authentication, logging, CORS, and more. Plug and play.",
+        description: "Recovery, Request-ID, body limit, JWT, CORS, gzip (opt-in). Plug in what you need.",
         icon: <Layers size={40} className="icon-layers" />
     },
     {
@@ -40,7 +40,7 @@ const features = [
     },
     {
         title: "Smart Caching",
-        description: "High-performance in-memory caching with sharding, TTL support, and zero-allocation updates.",
+        description: "Sharded in-memory cache with TTL and a 50k LRU cap so it cannot grow forever.",
         icon: <Cpu size={40} className="icon-db" />
     },
     {

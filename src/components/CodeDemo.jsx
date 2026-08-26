@@ -4,14 +4,16 @@ import './CodeDemo.css';
 
 const codeSnippet = `package main
 
-import "github.com/go-kvolt/kvolt"
+import (
+    "github.com/go-kvolt/kvolt"
+    "github.com/go-kvolt/kvolt/context"
+)
 
 func main() {
-    // fast & scale
-    app := kvolt.New()
+    app := kvolt.Default()
 
-    app.GET("/", func(c *kvolt.Context) error {
-        return c.JSON(200, kvolt.Map{
+    app.GET("/", func(c *context.Context) error {
+        return c.JSON(200, map[string]string{
             "message": "Hello, KVolt!",
         })
     })

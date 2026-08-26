@@ -4,22 +4,17 @@ export const security = (
         <p>Security is a shared responsibility. KVolt provides the tools, but you must use them correctly.</p>
 
         <h2>1. HTTPS / TLS</h2>
-        <p>Never run a production app over HTTP. Use KVolt's built-in `RunTLS` or a reverse proxy like Nginx/Cloudflare to handle SSL.</p>
+        <p>Do not expose production over plain HTTP. Use <code>RunTLS</code> or terminate TLS at Nginx/Caddy/Cloudflare. <code>Run()</code> still sets server timeouts.</p>
         <div className="code-block">
             <pre><code>{`// Enable HTTP/2 and TLS
 app.RunTLS(":443", "cert.pem", "key.pem")`}</code></pre>
         </div>
 
         <h2>2. Security Headers</h2>
-        <p>Use middleware to set security headers on every response.</p>
+        <p>Use <code>middleware.Secure()</code> (HSTS, X-Frame-Options, CSP). Prefer this over hand-rolled header middleware.</p>
         <div className="code-block">
-            <pre><code>{`func SecurityMiddleware(c *kvolt.Context) error {
-    c.Writer.Header().Set("X-Content-Type-Options", "nosniff")
-    c.Writer.Header().Set("X-Frame-Options", "DENY")
-    c.Writer.Header().Set("X-XSS-Protection", "1; mode=block")
-    c.Next()
-    return nil
-}`}</code></pre>
+            <pre><code>{`app := kvolt.Default()
+app.Use(middleware.Secure())`}</code></pre>
         </div>
 
         <h2>3. Input Validation</h2>

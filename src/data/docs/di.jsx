@@ -38,7 +38,7 @@ func main() {
         </div>
 
         <div className="alert alert-note">
-            <strong>Note:</strong> The container currently supports Type-to-Instance mapping. Complex constructor injection graphs are not yet supported in v1.
+            <strong>Note:</strong> Type-to-instance mapping only. Constructor graphs are not built in v2.
         </div>
     </>
 );

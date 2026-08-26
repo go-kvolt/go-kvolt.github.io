@@ -3,20 +3,19 @@ export const deployment = (
         <h1>Deployment Guide 🚀</h1>
         <p>KVolt applications are compiled into a single binary, making deployment straightforward. This guide covers common deployment strategies.</p>
 
+        <p>Use <code>app.Run()</code> in production (timeouts + graceful shutdown). <code>kvolt docker</code> writes a starter Dockerfile. Start the engine with <code>kvolt.Default()</code>.</p>
         <h2>Build for Production</h2>
         <div className="code-block">
-            <pre><code># Build a compressed binary
-                go build -ldflags="-s -w" -o app cmd/api/main.go
-
-                # (Optional) Compress further with UPX
-                upx --best app</code></pre>
+            <pre><code>{`kvolt build -o app
+# or
+go build -ldflags="-s -w" -o app cmd/api/main.go`}</code></pre>
         </div>
 
         <h2>Method 1: Docker (Recommended)</h2>
         <p>Create a multi-stage `Dockerfile` to keep the image small.</p>
         <div className="code-block">
             <pre><code>{`# Stage 1: Build
-FROM golang:1.21-alpine AS builder
+FROM golang:1.25-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
@@ -49,7 +48,7 @@ ExecStart=/var/www/my-app/server
 WorkingDirectory=/var/www/my-app
 Restart=always
 Environment="PORT=8080"
-Environment="GIN_MODE=release"
+Environment="PORT=8080"
 
 [Install]
 WantedBy=multi-user.target`}</code></pre>

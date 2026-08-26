@@ -1,13 +1,13 @@
 export const caching = (
     <>
         <h1>Caching System ⚡</h1>
-        <p>KVolt includes a custom-built, sharded in-memory cache designed for high concurrency and low lock contention.</p>
+        <p>Sharded in-memory cache (64 shards, FNV-1a). v2 caps the store so it cannot grow without bound.</p>
 
         <h2>Architecture</h2>
         <ul>
-            <li><strong>Sharding:</strong> Data is split across <strong>64 internal shards</strong> to minimize mutex contention.</li>
-            <li><strong>Hashing:</strong> Keys are routed to shards using the <strong>FNV-1a 32-bit</strong> hashing algorithm.</li>
-            <li><strong>Janitor:</strong> A background goroutine runs at your specified interval to sweep and delete expired items.</li>
+            <li><strong>Shards:</strong> 64, to cut lock contention.</li>
+            <li><strong>TTL:</strong> Janitor deletes expired keys. <code>Get</code> also drops expired entries.</li>
+            <li><strong>LRU cap:</strong> <code>DefaultMaxKeys</code> = 50,000. Use <code>NewMemoryStoreSized</code> to set your own. <code>Len()</code> returns the live count.</li>
         </ul>
 
         <h2>Usage</h2>
@@ -18,21 +18,16 @@ export const caching = (
 )
 
 func main() {
-    // Initialize with a cleanup interval of 5 minutes
     store := cache.NewMemoryStore(5 * time.Minute)
+    // or: cache.NewMemoryStoreSized(5*time.Minute, 100_000)
 
-    // Set: Key, Value, TTL
     store.Set("user:123", userData, 10*time.Minute)
 
-    // Get
     if val, err := store.Get("user:123"); err == nil {
         fmt.Println("Cache Hit:", val)
     }
 
-    // Delete
     store.Delete("user:123")
-    
-    // Flush All
     store.Flush()
 }`}</code></pre>
         </div>

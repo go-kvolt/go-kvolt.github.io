@@ -1,6 +1,6 @@
 # KVolt Website & Documentation ⚡
 
-The official landing page and documentation site for **KVolt**, the high-performance, battery-included web framework for Go.
+The official landing page and documentation site for **KVolt v2.0** (production).
 
 ![KVolt Hero](/public/mascot-with-transparent-background.png)
 

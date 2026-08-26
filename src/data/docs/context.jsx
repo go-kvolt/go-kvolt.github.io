@@ -1,83 +1,67 @@
 export const context = (
     <>
         <h1>Context API 📦</h1>
-        <p>The <code>context.Context</code> is the heart of KVolt. It wraps the <code>http.Request</code> and <code>http.ResponseWriter</code> and adds powerful helper methods.</p>
+        <p>The <code>context.Context</code> wraps <code>http.Request</code> and <code>http.ResponseWriter</code> with helpers. Import <code>github.com/go-kvolt/kvolt/context</code> — it is not <code>*kvolt.Context</code>.</p>
 
-        <h2>Response Methods</h2>
-        <p>KVolt provides easy ways to send responses in various formats.</p>
+        <h2>JSON, text, HTML</h2>
         <div className="code-block">
-            <pre><code>{`// JSON
-c.JSON(200, kvolt.Map{"message": "Success"})
-
-// String
+            <pre><code>{`c.JSON(200, map[string]string{"message": "Success"})
 c.String(200, "Hello %s", "World")
-
-// HTML (Raw)
 c.HTML(200, "<h1>Hello</h1>")
-
-// HTML (Template)
 c.RenderHTML(200, "index.html", data)
-
-// File (Efficient Stream)
 c.File("./downloads/report.pdf")`}</code></pre>
         </div>
+        <p>JSON, text, and HTML responses set <code>charset=utf-8</code>.</p>
 
-        <h2>Request Binding</h2>
-        <p><strong>Strict Binding:</strong> Bind JSON body to struct automatically with validation.</p>
+        <h2>Status</h2>
+        <p><code>Status(code)</code> records the code. It does <strong>not</strong> write headers immediately, so <code>Status(201).JSON(...)</code> can still set <code>Content-Type</code>. Prefer <code>c.JSON(code, body)</code>.</p>
+        <div className="code-block">
+            <pre><code>{`return c.JSON(404, map[string]string{"error": "Not Found"})`}</code></pre>
+        </div>
+
+        <h2>Params and query</h2>
+        <div className="code-block">
+            <pre><code>{`id := c.Params.Get("id")     // /users/:id
+q := c.Query("q")            // /search?q=foo`}</code></pre>
+        </div>
+
+        <h2>Request binding</h2>
+        <ul>
+            <li><code>BindJSON</code> — decode only (fast path: invoices, checkout).</li>
+            <li><code>Bind</code> — decode then validate (<code>validate</code> tags).</li>
+        </ul>
         <div className="code-block">
             <pre><code>{`type User struct {
     Name  string \`json:"name" validate:"required"\`
     Email string \`json:"email" validate:"required,email"\`
 }
 var u User
+if err := c.BindJSON(&u); err != nil {
+    return c.JSON(400, map[string]string{"error": err.Error()})
+}
 if err := c.Bind(&u); err != nil {
-    return c.Status(400).String(400, err.Error())
+    return c.JSON(400, map[string]string{"error": err.Error()})
+}`}</code></pre>
+        </div>
+        <p>v2 streams the body for <code>BindJSON</code>. Do not reuse a pooled request buffer for JSON strings — that aliased memory under high concurrency.</p>
+
+        <h2>Data sharing</h2>
+        <div className="code-block">
+            <pre><code>{`c.Set("user_id", "12345")
+if val, ok := c.Get("user_id"); ok {
+    // ...
 }`}</code></pre>
         </div>
 
-        <h2>Data Sharing (Keys)</h2>
-        <p>Share data between middleware and handlers safely using Context Keys.</p>
+        <h2>Uploads and WebSockets</h2>
         <div className="code-block">
-            <pre><code>{`// In Middleware
-func Auth(c *kvolt.Context) error {
-    c.Set("user_id", "12345")
-    c.Next()
-    return nil
-}
+            <pre><code>{`file, err := c.FormFile("profile_pic")
+c.SaveUploadedFile(file, "./uploads/"+file.Filename)
 
-// In Handler
-func Profile(c *kvolt.Context) error {
-    userID := c.MustGet("user_id").(string) // Panics if missing
-    // or
-    if val, ok := c.Get("user_id"); ok {
-        // ...
-    }
-}`}</code></pre>
+conn, err := c.Upgrade() // same-origin check by default`}</code></pre>
         </div>
 
-        <h2>File Uploads</h2>
-        <p>Handle multipart form file uploads easily.</p>
-        <div className="code-block">
-            <pre><code>{`// Get file header
-file, err := c.FormFile("profile_pic")
-if err != nil {
-    return c.Status(400).String(400, "Bad Request")
-}
-
-// Save to disk
-c.SaveUploadedFile(file, "./uploads/" + file.Filename)`}</code></pre>
-        </div>
-
-        <h2>WebSockets</h2>
-        <p>Upgrade HTTP connections to WebSocket <code>*websocket.Conn</code>.</p>
-        <div className="code-block">
-            <pre><code>{`conn, err := c.Upgrade()
-if err != nil {
-    // Handle error
-}`}</code></pre>
-        </div>
-
-        <h2>Zero-Allocation</h2>
-        <p>Context objects are pooled using <code>sync.Pool</code>. <br /><strong>Warning:</strong> The Context is <strong>not thread-safe</strong>. Do not pass the context pointer to background goroutines. If you need it, copy the data you need from it first.</p>
+        <h2>Zero-allocation</h2>
+        <p>Contexts come from <code>sync.Pool</code>. <strong>Not thread-safe.</strong> Do not pass <code>*Context</code> to a background goroutine — copy the values you need first.</p>
     </>
 );
