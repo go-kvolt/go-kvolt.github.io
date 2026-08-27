@@ -12,7 +12,7 @@ export const dependency_injection = (
 
         <h2>Example</h2>
         <div className="code-block">
-            <pre><code>{`import "github.com/go-kvolt/kvolt/pkg/di"
+            <pre><code>{`import "github.com/go-kvolt/kvolt/v2/pkg/di"
 
 type Database interface {
     Query()

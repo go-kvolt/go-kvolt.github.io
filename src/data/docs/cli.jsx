@@ -1,11 +1,11 @@
 export const cli = (
     <>
         <h1>CLI Usage ⌨️</h1>
-        <p>The <code>kvolt</code> CLI creates projects and runs them with hot reload. v2.0.0 prints <code>kvolt version 2.0.0</code>.</p>
+        <p>The <code>kvolt</code> CLI creates projects and runs them with hot reload. v2.0.1 prints <code>kvolt version 2.0.1</code>.</p>
 
         <h2>Install</h2>
         <div className="code-block">
-            <pre><code>go install github.com/go-kvolt/kvolt/cmd/kvolt@main</code></pre>
+            <pre><code>go install github.com/go-kvolt/kvolt/v2/cmd/kvolt@v2.0.1</code></pre>
         </div>
 
         <h2>Commands</h2>

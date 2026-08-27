@@ -14,7 +14,7 @@ export const logging = (
         <div className="code-block">
             <pre><code>{`import (
     "os"
-    "github.com/go-kvolt/kvolt/pkg/logger"
+    "github.com/go-kvolt/kvolt/v2/pkg/logger"
 )
 
 // Create Logger

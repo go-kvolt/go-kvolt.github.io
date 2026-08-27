@@ -12,7 +12,7 @@ export const authentication = (
         <div className="code-block">
             <pre><code>{`import (
     "time"
-    "github.com/go-kvolt/kvolt/pkg/auth"
+    "github.com/go-kvolt/kvolt/v2/pkg/auth"
 )
 
 func Login(c *kvolt.Context) error {

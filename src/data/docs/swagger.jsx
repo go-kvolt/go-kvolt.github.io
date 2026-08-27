@@ -5,7 +5,7 @@ export const swagger = (
 
         <h2>Quick Integration</h2>
         <div className="code-block">
-            <pre><code>{`import "github.com/go-kvolt/kvolt/pkg/swagger"
+            <pre><code>{`import "github.com/go-kvolt/kvolt/v2/pkg/swagger"
 
 func main() {
     app := kvolt.New()

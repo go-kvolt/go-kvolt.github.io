@@ -16,7 +16,7 @@ export const queue = (
 
         <h2>API Reference</h2>
         <div className="code-block">
-            <pre><code>{`import "github.com/go-kvolt/kvolt/pkg/queue"
+            <pre><code>{`import "github.com/go-kvolt/kvolt/v2/pkg/queue"
 
 // 1. Create Queue
 // Buffer: 1000 jobs

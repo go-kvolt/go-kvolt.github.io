@@ -6,9 +6,9 @@ export const quickstart = (
             <pre><code>{`package main
 
 import (
-    "github.com/go-kvolt/kvolt"
-    "github.com/go-kvolt/kvolt/context"
-    "github.com/go-kvolt/kvolt/middleware"
+    "github.com/go-kvolt/kvolt/v2"
+    "github.com/go-kvolt/kvolt/v2/context"
+    "github.com/go-kvolt/kvolt/v2/middleware"
 )
 
 func main() {

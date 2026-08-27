@@ -14,7 +14,7 @@ export const caching = (
         <div className="code-block">
             <pre><code>{`import (
     "time"
-    "github.com/go-kvolt/kvolt/pkg/cache"
+    "github.com/go-kvolt/kvolt/v2/pkg/cache"
 )
 
 func main() {

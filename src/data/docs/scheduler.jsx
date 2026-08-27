@@ -5,7 +5,7 @@ export const scheduler = (
 
         <h2>Usage</h2>
         <div className="code-block">
-            <pre><code>{`import "github.com/go-kvolt/kvolt/pkg/scheduler"
+            <pre><code>{`import "github.com/go-kvolt/kvolt/v2/pkg/scheduler"
 
 func main() {
     s := scheduler.New()

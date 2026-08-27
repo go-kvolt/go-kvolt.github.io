@@ -4,9 +4,9 @@ export const grpc = (
         <p>HTTP and gRPC in one process. Added in v1.1.0. Use <code>app.GRPCServer()</code> then <code>RunAll</code> / <code>RunDual</code>.</p>
         <div className="code-block">
             <pre><code>{`import (
-    "github.com/go-kvolt/kvolt"
-    kvctx "github.com/go-kvolt/kvolt/context"
-    kvgrpc "github.com/go-kvolt/kvolt/grpc"
+    "github.com/go-kvolt/kvolt/v2"
+    kvctx "github.com/go-kvolt/kvolt/v2/context"
+    kvgrpc "github.com/go-kvolt/kvolt/v2/grpc"
     pb "your-app/proto/gen"
 )
 

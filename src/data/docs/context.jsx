@@ -1,7 +1,7 @@
 export const context = (
     <>
         <h1>Context API 📦</h1>
-        <p>The <code>context.Context</code> wraps <code>http.Request</code> and <code>http.ResponseWriter</code> with helpers. Import <code>github.com/go-kvolt/kvolt/context</code> — it is not <code>*kvolt.Context</code>.</p>
+        <p>The <code>context.Context</code> wraps <code>http.Request</code> and <code>http.ResponseWriter</code> with helpers. Import <code>github.com/go-kvolt/kvolt/v2/context</code> — it is not <code>*kvolt.Context</code>.</p>
 
         <h2>JSON, text, HTML</h2>
         <div className="code-block">

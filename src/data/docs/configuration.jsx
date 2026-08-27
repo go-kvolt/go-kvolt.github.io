@@ -31,7 +31,7 @@ type Config struct {
         <h2>Loading Configuration</h2>
         <p>The `config.Load` function automatically searches for `config.yaml` (or .json) in the root or `./config` directory, loads `.env` files, and overrides with environment variables.</p>
         <div className="code-block">
-            <pre><code>{`import "github.com/go-kvolt/kvolt/pkg/config"
+            <pre><code>{`import "github.com/go-kvolt/kvolt/v2/pkg/config"
 
 var AppConfig Config
 

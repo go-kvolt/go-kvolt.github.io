@@ -3,6 +3,24 @@ export const changelog = (
         <h1>Changelog</h1>
         <p className="lead">Production line. Full notes: <a href="https://github.com/go-kvolt/kvolt/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer">CHANGELOG.md</a>.</p>
 
+        <h2>v2.0.1 — 2026-08-27</h2>
+        <p>Valid Go v2 module. Use this tag, not <code>v2.0.0</code>.</p>
+        <div className="code-block">
+            <pre><code>{`go get github.com/go-kvolt/kvolt/v2@v2.0.1
+go install github.com/go-kvolt/kvolt/v2/cmd/kvolt@v2.0.1`}</code></pre>
+        </div>
+        <h3>Added</h3>
+        <ul>
+            <li>Module path <code>github.com/go-kvolt/kvolt/v2</code></li>
+            <li>Concurrent JSON tests, fuzz (BindJSON, Query, router), soak harness</li>
+            <li><code>scripts/local10.ps1</code> for local race + soak + fuzz</li>
+        </ul>
+        <h3>Fixed</h3>
+        <ul>
+            <li>Logger emit is injectable so tests can assert the real status line</li>
+        </ul>
+        <p><a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.0.1" target="_blank" rel="noreferrer">GitHub release</a></p>
+
         <h2>v2.0.0 — 2026-08-27</h2>
         <p>Production release. Safe JSON under load, <code>Default()</code> engine, middleware and cache fixes.</p>
         <h3>Added</h3>

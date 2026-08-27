@@ -7,8 +7,8 @@ export const testing = (
         <div className="code-block">
             <pre><code>{`import (
     "testing"
-    "github.com/go-kvolt/kvolt"
-    "github.com/go-kvolt/kvolt/pkg/testkit"
+    "github.com/go-kvolt/kvolt/v2"
+    "github.com/go-kvolt/kvolt/v2/pkg/testkit"
 )
 
 func TestUserEndpoint(t *testing.T) {
