@@ -156,6 +156,11 @@
     border-color: rgba(0, 240, 255, 0.35);
 }
 
+.alert-tip {
+    background: rgba(52, 211, 153, 0.08);
+    border-color: rgba(52, 211, 153, 0.4);
+}
+
 .alert-warning {
     background: rgba(255, 235, 59, 0.08);
     border-color: rgba(255, 235, 59, 0.4);

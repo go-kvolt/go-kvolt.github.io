@@ -1,41 +1,85 @@
 export const testing = (
     <>
-        <h1>TestKit 🧪</h1>
-        <p>KVolt ships with a `testkit` package to make unit testing your handlers a breeze. It wraps `net/http/httptest` with a fluent API.</p>
+        <h1>TestKit: Zero-Race Testing 🧪</h1>
+        <p>KVolt includes <code>pkg/testkit</code> — a high-performance fluent testing harness wrapping <code>net/http/httptest</code>. Test your HTTP handlers, middleware, and full app lifecycles with zero boilerplate.</p>
 
-        <h2>Usage</h2>
+        <h2>Basic Unit & Integration Test</h2>
         <div className="code-block">
-            <pre><code>{`import (
+            <pre><code>{`package main_test
+
+import (
+    "net/http"
     "testing"
+
     "github.com/go-kvolt/kvolt/v2"
+    "github.com/go-kvolt/kvolt/v2/context"
     "github.com/go-kvolt/kvolt/v2/pkg/testkit"
 )
 
 func TestUserEndpoint(t *testing.T) {
-    // 1. Setup App
+    // 1. Setup isolated test app
     app := kvolt.New()
-    app.GET("/hello", func(c *kvolt.Context) error {
-        return c.String(200, "Hello World")
+    app.GET("/users/:id", func(c *context.Context) error {
+        return c.JSON(http.StatusOK, map[string]string{
+            "id":   c.Param("id"),
+            "role": "admin",
+        })
     })
 
-    // 2. Create TestClient
-    ts := testkit.New(app)
+    // 2. Initialize TestKit runner
+    client := testkit.New(app)
 
-    // 3. Perform Requests & Assert
-    res := ts.Get(t, "/hello")
-    
-    res.AssertStatus(t, 200)
-    res.AssertBody(t, "Hello World")
+    // 3. Perform request and fluent assertions
+    res := client.Get(t, "/users/42")
+    res.AssertStatus(t, http.StatusOK)
+    res.AssertHeader(t, "Content-Type", "application/json; charset=utf-8")
+    res.AssertBodyContains(t, \`"id":"42"\`)
 }`}</code></pre>
         </div>
 
-        <h2>API Reference</h2>
-        <ul>
-            <li><code>New(http.Handler)</code>: initialized the test kit.</li>
-            <li><code>Get(t, path)</code>: Performs a GET request.</li>
-            <li><code>Post(t, path, body)</code>: Performs a POST request (body is auto-marshaled to JSON).</li>
-            <li><code>AssertStatus(t, code)</code>: Verifies HTTP status code.</li>
-            <li><code>AssertBody(t, contains)</code>: Verifies response body contains string.</li>
-        </ul>
+        <h2>POST JSON Payload Testing</h2>
+        <div className="code-block">
+            <pre><code>{`func TestCreateUser(t *testing.T) {
+    app := kvolt.New()
+    app.POST("/users", func(c *context.Context) error {
+        var body map[string]string
+        if err := c.BindJSON(&body); err != nil {
+            return c.JSON(http.StatusBadRequest, err.Error())
+        }
+        return c.JSON(http.StatusCreated, body)
+    })
+
+    client := testkit.New(app)
+    
+    payload := map[string]string{"name": "Alice", "email": "alice@example.com"}
+    res := client.PostJSON(t, "/users", payload)
+    
+    res.AssertStatus(t, http.StatusCreated)
+    res.AssertBodyContains(t, "alice@example.com")
+}`}</code></pre>
+        </div>
+
+        <h2>Concurrent Test Safety</h2>
+        <div className="code-block">
+            <pre><code>{`// Safe to run with -race flag enabled in CI
+func TestConcurrentRequests(t *testing.T) {
+    app := kvolt.Default()
+    app.GET("/ping", func(c *context.Context) error {
+        return c.String(http.StatusOK, "pong")
+    })
+
+    client := testkit.New(app)
+
+    t.Run("parallel workers", func(t *testing.T) {
+        for i := 0; i < 50; i++ {
+            t.Run("worker", func(t *testing.T) {
+                t.Parallel()
+                res := client.Get(t, "/ping")
+                res.AssertStatus(t, http.StatusOK)
+            })
+        }
+    })
+}`}</code></pre>
+        </div>
     </>
 );

@@ -1,51 +1,68 @@
 export const authentication = (
     <>
-        <h1>Authentication 🔐</h1>
-        <p>KVolt includes a lightweight JWT (JSON Web Token) implementation in <code>pkg/auth</code>.</p>
+        <h1>Authentication & JWT 🔐</h1>
+        <p>KVolt provides lightweight JSON Web Token authentication in <code>pkg/auth</code> and enterprise-grade authorization middleware in <code>middleware</code>.</p>
 
-        <div className="alert alert-warning">
-            <strong>Warning:</strong> The default JWT implementation uses a hardcoded secret ("kvolt-default-secret"). You <strong>MUST</strong> change this in production by modifying <code>pkg/auth/jwt.go</code> or using a custom middleware config.
-        </div>
-
-        <h2>Generating Tokens</h2>
-        <p>Use `auth.GenerateToken` to create signed tokens with custom claims.</p>
+        <h2>1. Generating JWT Tokens</h2>
+        <p>Generate signed HMAC or RSA tokens with custom claims:</p>
         <div className="code-block">
-            <pre><code>{`import (
+            <pre><code>{`package main
+
+import (
     "time"
+    "github.com/go-kvolt/kvolt/v2/context"
     "github.com/go-kvolt/kvolt/v2/pkg/auth"
 )
 
-func Login(c *kvolt.Context) error {
-    // ... verify credentials ...
+func LoginHandler(c *context.Context) error {
+    // Authenticate user credentials...
 
-    // Generate Token (valid for 72 hours)
-    token, err := auth.GenerateToken(auth.Claims{
-        "user_id": 123,
-        "role":    "admin",
-    }, 72*time.Hour)
-
-    if err != nil {
-        return c.Status(500).String(500, "Could not generate token")
+    claims := auth.Claims{
+        "sub":    "usr_991823",
+        "org_id": "org_enterprise_1",
+        "role":   "admin",
+        "perms":  []string{"users:read", "users:write"},
     }
 
-    return c.JSON(200, kvolt.Map{"token": token})
+    // Sign token valid for 24 hours
+    token, err := auth.GenerateToken(claims, 24*time.Hour)
+    if err != nil {
+        return c.JSON(500, map[string]string{"error": "Failed to issue token"})
+    }
+
+    return c.JSON(200, map[string]string{"access_token": token})
 }`}</code></pre>
         </div>
 
-        <h2>Protecting Routes</h2>
-        <p>Use the built-in JWT middleware to protect routes. It automatically verifies the token signature and expiration.</p>
+        <h2>2. Protecting Routes with JWT Middleware</h2>
+        <p>Protect route groups by enforcing valid bearer tokens:</p>
         <div className="code-block">
-            <pre><code>{`// Protect a group
-api := app.Group("/api")
+            <pre><code>{`api := app.Group("/api/v1")
+
+// Enforces valid Authorization: Bearer <token>
 api.Use(middleware.JWT(middleware.JWTConfig{
-    // If empty, uses auth.Secret ("kvolt-default-secret")
-    SigningKey: "my-production-secret", 
+    SigningKey:  "your-secure-production-secret-key",
     TokenLookup: "header:Authorization",
+    ContextKey:  "user_claims",
 }))
 
-api.GET("/dashboard", func(c *kvolt.Context) error {
-    return c.String(200, "Welcome, authorized user!")
+api.GET("/profile", func(c *context.Context) error {
+    claims := c.Get("user_claims").(auth.Claims)
+    return c.JSON(200, map[string]any{
+        "user_id": claims["sub"],
+        "role":    claims["role"],
+    })
 })`}</code></pre>
+        </div>
+
+        <h2>3. RBAC & Permissions Enforcement</h2>
+        <p>Chain RBAC gates directly on sensitive routes:</p>
+        <div className="code-block">
+            <pre><code>{`// Only users with "admin" role
+api.DELETE("/users/:id", middleware.RequireRole("admin"), handleDeleteUser)
+
+// Only users with "billing:write" permission
+api.POST("/invoices", middleware.RequirePermission("billing:write"), handleInvoice)`}</code></pre>
         </div>
     </>
 );

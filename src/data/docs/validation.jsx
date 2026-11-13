@@ -13,14 +13,14 @@ export const validation = (
     Password string \`json:"password" validate:"required,min=8"\`
 }
 
-func Register(c *kvolt.Context) error {
+func Register(c *context.Context) error {
     var req RegisterRequest
     if err := c.Bind(&req); err != nil {
         // Returns 400 with a detailed validation error message
-        return c.Status(400).String(400, "Validation Failed: " + err.Error())
+        return c.JSON(400, map[string]string{"error": "Validation Failed: " + err.Error()})
     }
     
-    return c.String(200, "User Registered: " + req.Username)
+    return c.JSON(200, map[string]string{"message": "User Registered: " + req.Username})
 }`}</code></pre>
         </div>
 
