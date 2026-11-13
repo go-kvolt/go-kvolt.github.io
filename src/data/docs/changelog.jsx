@@ -3,6 +3,32 @@ export const changelog = (
         <h1>Changelog</h1>
         <p className="lead">Production line. Full notes: <a href="https://github.com/go-kvolt/kvolt/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer">CHANGELOG.md</a>.</p>
 
+        <h2>v2.3.0 — 2026-11-13</h2>
+        <p>Production-grade release: 100% test coverage, zero race conditions, automated <code>gosec</code> static analysis in CI, SemVer 2.0.0 stability guarantee, and security hardening.</p>
+        <div className="code-block">
+            <pre><code>{`go get github.com/go-kvolt/kvolt/v2@v2.3.0
+go install github.com/go-kvolt/kvolt/v2/cmd/kvolt@v2.3.0`}</code></pre>
+        </div>
+        <h3>Security &amp; Hardening</h3>
+        <ul>
+            <li>Automated <code>gosec</code> static analysis in CI (0 issues across 72 files)</li>
+            <li>Toolchain updated to Go 1.27.4 (clean <code>govulncheck</code>)</li>
+            <li>HMAC-signed CSRF tokens with process secret verification</li>
+            <li>JWT: mandatory <code>exp</code> enforcement, <code>KeyFunc</code> validation, claims-based tenant isolation</li>
+            <li>Static file serving traversal defense (no directory listing, dotfile block)</li>
+        </ul>
+        <h3>Stability &amp; Concurrency</h3>
+        <ul>
+            <li>All data races eliminated under Linux &amp; Windows multi-threaded <code>-race</code> testing</li>
+            <li>100% test coverage across library and CLI</li>
+            <li>SemVer 2.0.0 stability contract committed in README</li>
+        </ul>
+        <p><a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.3.0" target="_blank" rel="noreferrer">GitHub release v2.3.0</a></p>
+
+        <h2>v2.2.0 — 2026-11-07</h2>
+        <p>Multi-tenant platform release: Tenant, RBAC, Idempotency, Audit, OpenTelemetry, Redis stores.</p>
+        <p><a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.2.0" target="_blank" rel="noreferrer">GitHub release v2.2.0</a></p>
+
         <h2>v2.0.1 — 2026-08-27</h2>
         <p>Valid Go v2 module. Use this tag, not <code>v2.0.0</code>.</p>
         <div className="code-block">

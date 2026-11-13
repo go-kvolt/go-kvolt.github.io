@@ -21,7 +21,7 @@ const Navbar = () => {
         <Link to="/" className="logo">
           <img src="/logo.webp" alt="KVolt Logo" className="logo-img" />
           <span className="logo-text">KVolt</span>
-          <span className="version-badge">v2.0</span>
+          <span className="version-badge">v2.3</span>
         </Link>
 
         {/* Desktop Nav */}

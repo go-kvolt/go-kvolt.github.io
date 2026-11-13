@@ -1,6 +1,6 @@
 # KVolt Website & Documentation ⚡
 
-The official landing page and documentation site for **KVolt v2.0** (production).
+The official landing page and documentation site for **KVolt v2.3.0** (production-ready).
 
 ![KVolt Hero](/public/mascot-with-transparent-background.png)
 

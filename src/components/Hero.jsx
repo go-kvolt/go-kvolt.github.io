@@ -27,7 +27,7 @@ const Hero = () => {
                     <span className="hero-description-small">
                     Crafting high-performance backends shouldn't be painful.
                     <br />
-                    <span className="version-pill">v2.0.1</span>
+                    <span className="version-pill">v2.3.0</span>
                     </span>
                 </motion.p>
 

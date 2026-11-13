@@ -1,10 +1,10 @@
 export const install = (
     <>
         <h1>Installation</h1>
-        <p className="lead">CLI or a plain Go module. Current production line is <strong>v2.0.1</strong>.</p>
+        <p className="lead">CLI or a plain Go module. Current production release is <strong>v2.3.0</strong>.</p>
 
-        <div className="alert alert-warning">
-            <strong>Use <code>v2.0.1</code>.</strong> The older GitHub tag <code>v2.0.0</code> is not a valid Go module (path was not <code>/v2</code>). Do not <code>go get @v2.0.0</code>. For the old v1 line, <code>github.com/go-kvolt/kvolt@latest</code> still resolves to v1.1.0.
+        <div className="alert alert-note">
+            <strong>KVolt v2.3.0 (Production-Ready)</strong> is the latest official release. Requires Go 1.27+.
         </div>
 
         <hr />
@@ -14,9 +14,9 @@ export const install = (
 
         <h3>1. Install the CLI</h3>
         <div className="code-block">
-            <pre><code>{`go install github.com/go-kvolt/kvolt/v2/cmd/kvolt@v2.0.1
+            <pre><code>{`go install github.com/go-kvolt/kvolt/v2/cmd/kvolt@v2.3.0
 kvolt version
-# kvolt version 2.0.1`}</code></pre>
+# kvolt version 2.3.0`}</code></pre>
         </div>
         <p><em>If the command is not found, add <code>$(go env GOPATH)/bin</code> to your PATH.</em></p>
 
@@ -32,7 +32,7 @@ kvolt run`}</code></pre>
         <div className="code-block">
             <pre><code>{`mkdir my-app && cd my-app
 go mod init my-app
-go get github.com/go-kvolt/kvolt/v2@v2.0.1`}</code></pre>
+go get github.com/go-kvolt/kvolt/v2@v2.3.0`}</code></pre>
         </div>
         <p>Then create <code>main.go</code> with <code>kvolt.Default()</code> — see Quick Start.</p>
     </>
