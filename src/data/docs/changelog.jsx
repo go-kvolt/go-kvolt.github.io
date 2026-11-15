@@ -3,6 +3,33 @@ export const changelog = (
         <h1>Changelog</h1>
         <p className="lead">Production line. Full notes: <a href="https://github.com/go-kvolt/kvolt/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer">CHANGELOG.md</a>.</p>
 
+        <h2>v2.4.0 — 2026-11-15</h2>
+        <p>Enterprise hardening and feature additions: typed request header binding, full HTTP verb testkit suites, RFC-compliant content negotiation, atomic queue retries, and defensive resilience across all 30 packages.</p>
+        <div className="code-block">
+            <pre><code>{`go get github.com/go-kvolt/kvolt/v2@v2.4.0
+go install github.com/go-kvolt/kvolt/v2/cmd/kvolt@v2.4.0`}</code></pre>
+        </div>
+        <h3>Added</h3>
+        <ul>
+            <li><code>Context.BindHeader</code>: typed header binding into structs with case-insensitive and canonical fallback</li>
+            <li><code>pkg/testkit</code> &amp; <code>pkg/test</code>: Added <code>Put</code>, <code>Delete</code>, <code>Patch</code>, and direct <code>Unmarshal</code> response decoding</li>
+            <li><code>pkg/validator</code>: Multi-byte UTF-8 rune count validation and whitespace trimming for multi-rule struct tags</li>
+        </ul>
+        <h3>Fixed</h3>
+        <ul>
+            <li><code>middleware.Compress</code>: RFC-compliant quality parameter parsing and gzip refusal support</li>
+            <li><code>pkg/queue/redis</code>: Atomic retry-before-ack guaranteeing message durability under worker crashes</li>
+            <li><code>pkg/cache</code>: Direct unmarshal for raw byte slices and strings, preventing double-encoding corruption</li>
+            <li><code>pkg/config</code>: Dynamic instantiation of nil embedded pointer structs for full Viper tag binding</li>
+            <li><code>context.ClientIP</code> &amp; <code>middleware.Secure</code>: IPv6 bracketed host normalization</li>
+            <li><code>Engine.ServeHTTP</code>: <code>301 Moved Permanently</code> on trailing-slash HEAD redirects matching GET behavior</li>
+        </ul>
+        <p><a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.4.0" target="_blank" rel="noreferrer">GitHub release v2.4.0</a></p>
+
+        <h2>v2.3.1 — 2026-11-14</h2>
+        <p>Hardening patch release for production enterprise deployment: resolves concurrency traps, background worker resilience, dual server error handling, and nil-pointer edge cases.</p>
+        <p><a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.3.1" target="_blank" rel="noreferrer">GitHub release v2.3.1</a></p>
+
         <h2>v2.3.0 — 2026-11-13</h2>
         <p>Production-grade release: 100% test coverage, zero race conditions, automated <code>gosec</code> static analysis in CI, SemVer 2.0.0 stability guarantee, and security hardening.</p>
         <div className="code-block">

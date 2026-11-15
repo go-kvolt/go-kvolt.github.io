@@ -6,7 +6,7 @@ import './Hero.css';
 
 const Hero = () => {
     const [copied, setCopied] = useState(false);
-    const installCmd = "go get github.com/go-kvolt/kvolt/v2@v2.3.0";
+    const installCmd = "go get github.com/go-kvolt/kvolt/v2@v2.4.0";
 
     const handleCopy = () => {
         navigator.clipboard.writeText(installCmd);
@@ -25,13 +25,13 @@ const Hero = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <a
-                        href="https://github.com/go-kvolt/kvolt/releases/tag/v2.3.0"
+                        href="https://github.com/go-kvolt/kvolt/releases/tag/v2.4.0"
                         target="_blank"
                         rel="noreferrer"
                         className="release-banner"
                     >
                         <span className="badge-pulse"></span>
-                        <span className="release-tag">v2.3.0 Released</span>
+                        <span className="release-tag">v2.4.0 Released</span>
                         <span className="release-text">Production Ready &amp; Security Audited</span>
                         <ArrowRight size={14} className="banner-arrow" />
                     </a>
@@ -101,7 +101,7 @@ const Hero = () => {
                         rel="noreferrer"
                         className="btn btn-secondary github-cta"
                     >
-                        GitHub (v2.3.0)
+                        GitHub (v2.4.0)
                     </a>
                 </motion.div>
 

@@ -7,7 +7,7 @@ export const middleware = (
             <code>kvolt.Default()</code> pre-configures <strong>Recovery</strong>, <strong>RequestID</strong>, and <strong>MaxBodySize (1MB)</strong>. All other middleware can be chained globally on the engine or selectively on Route Groups.
         </div>
 
-        <h2>1. Multi-Tenant Isolation (v2.3.0)</h2>
+        <h2>1. Multi-Tenant Isolation</h2>
         <p>Extract and isolate tenants per-request from headers, URL parameters, or verified JWT claims. Enforces strict 403 Forbidden rejection when the tenant is missing or unauthorized.</p>
         <div className="code-block">
             <pre><code>{`// Header-based tenant extraction (default: X-Tenant-ID)

@@ -33,7 +33,7 @@ func main() {
     app.GET("/healthz", func(c *context.Context) error {
         return c.JSON(http.StatusOK, map[string]string{
             "status":  "healthy",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
         })
     })
 

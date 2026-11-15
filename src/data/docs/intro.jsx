@@ -2,10 +2,10 @@ export const intro = (
     <>
         <h1>Introduction to KVolt ⚡</h1>
         <p className="lead">
-            KVolt is a high-performance Go web framework on <code>net/http</code>. <strong>v2.3.0</strong> is the production-ready release: 100% test coverage, zero data races, automated <code>gosec</code> security analysis in CI, and a formal SemVer 2.0.0 stability guarantee.
+            KVolt is a high-performance Go web framework on <code>net/http</code>. <strong>v2.4.0</strong> is the production-ready release: 100% test coverage, zero data races, automated <code>gosec</code> security analysis in CI, and a formal SemVer 2.0.0 stability guarantee.
         </p>
         <div className="alert alert-note">
-            <strong>v2.3.0</strong> — 13 Nov 2026. Module path <code>github.com/go-kvolt/kvolt/v2</code>. See the <a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.3.0" target="_blank" rel="noreferrer">GitHub release</a> and the Changelog page.
+            <strong>v2.4.0</strong> — 15 Nov 2026. Module path <code>github.com/go-kvolt/kvolt/v2</code>. See the <a href="https://github.com/go-kvolt/kvolt/releases/tag/v2.4.0" target="_blank" rel="noreferrer">GitHub release</a> and the Changelog page.
         </div>
         <hr />
         <h2>Key Capabilities 🚀</h2>
